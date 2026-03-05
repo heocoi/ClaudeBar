@@ -1,26 +1,41 @@
-# ClaudeBar
+<p align="center">
+  <img src="ClaudeBar/Assets.xcassets/AppIcon.appiconset/icon_256x256@2x.png" width="128" height="128" alt="ClaudeBar">
+</p>
 
-macOS menu bar companion for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Respond to permissions, questions, and prompts without switching to your terminal.
+<h1 align="center">ClaudeBar</h1>
+
+<p align="center">
+  macOS menu bar companion for <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>.<br>
+  Respond to permissions, questions, and prompts without switching to your terminal.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/macOS-14%2B-blue" alt="macOS 14+">
+  <img src="https://img.shields.io/badge/swift-5.9-orange" alt="Swift 5.9">
+  <img src="https://img.shields.io/github/license/heocoi/ClaudeBar" alt="MIT License">
+</p>
+
+---
 
 ## The Problem
 
-Claude Code runs in the terminal. When it needs your input (permission to run a command, a question, idle prompt), you have to switch to the terminal, find the right window, and respond. This breaks your flow.
+Claude Code runs in the terminal. When it needs your input — permission to run a command, a question, idle prompt — you have to switch to the terminal, find the right window, and respond. This breaks your flow.
 
 ## How It Works
 
 ```
-Claude Code (hook) → ClaudeBar (menu bar popup) → You (click Allow) → Terminal (receives "y" + Enter)
+Claude Code (hook) → ClaudeBar (popup) → You (click Allow) → Terminal (receives "y" + Enter)
 ```
 
-ClaudeBar listens for Claude Code hook events via Unix socket. When Claude needs attention, a popup appears on your menu bar with context and quick actions. Your response is sent directly to the correct terminal window — no context switching needed.
+ClaudeBar listens for hook events via Unix socket. When Claude needs attention, a popup appears on your menu bar. Your response is sent directly to the correct terminal window.
 
 ## Features
 
 - **Permission prompts** — Allow/Deny buttons with command preview
 - **Questions** — Option buttons for AskUserQuestion events
 - **Text input** — Free-form input field for general prompts
-- **Window targeting** — Sends responses to the exact terminal window running Claude Code (not just the focused one)
-- **Sound notifications** — Ping sound when Claude needs attention
+- **Window targeting** — Sends to the exact terminal window running Claude Code
+- **Sound notifications** — Ping when Claude needs attention
 - **Auto-popup** — Popup appears automatically on new events
 
 ### Terminal Support
@@ -32,15 +47,14 @@ ClaudeBar listens for Claude Code hook events via Unix socket. When Claude needs
 | Terminal.app | Basic | AppleScript |
 | WezTerm | Basic | `wezterm cli` |
 
-Kitty is recommended — it supports window ID targeting for accurate delivery.
+Kitty is recommended for window ID targeting.
 
 ## Setup
 
 ### Requirements
 
 - macOS 14 Sonoma or later
-- Xcode 16+ (to build)
-- [XcodeGen](https://github.com/yonaskolb/XcodeGen) (optional, for regenerating xcodeproj)
+- Xcode 16+
 
 ### Build & Run
 
@@ -53,8 +67,6 @@ open ~/Library/Developer/Xcode/DerivedData/ClaudeBar-*/Build/Products/Debug/Clau
 Or open `ClaudeBar.xcodeproj` in Xcode and hit Run.
 
 ### Install Hook
-
-Copy the hook script and add it to your Claude Code settings:
 
 ```bash
 cp ClaudeBar/Hook/notify-claudebar.sh ~/.claude/hooks/notify-claudebar.sh
@@ -83,7 +95,7 @@ Add to `~/.claude/settings.json`:
 
 ### Kitty Setup
 
-For window-targeted responses, enable remote control in `kitty.conf`:
+Enable remote control in `kitty.conf`:
 
 ```
 allow_remote_control yes
@@ -96,16 +108,14 @@ Restart kitty after changing the config.
 
 ```
 ~/.claude/hooks/notify-claudebar.sh
-  ↓ (reads stdin JSON from Claude Code, injects KITTY_WINDOW_ID)
-Unix socket /tmp/claudebar.sock
+  ↓ reads stdin JSON, injects KITTY_WINDOW_ID
+/tmp/claudebar.sock
   ↓
 SocketServer → EventParser → SessionManager
   ↓
-PopoverView (PermissionView / QuestionView / InputView)
-  ↓ (user clicks Allow / selects option / types response)
-TerminalAdapter (KittyAdapter / GenericTerminalAdapter)
+PopoverView → PermissionView / QuestionView / InputView
   ↓
-kitten @ send-text + send-key Return → correct terminal window
+KittyAdapter → kitten @ send-text + send-key Return
 ```
 
 ## Roadmap
@@ -113,7 +123,7 @@ kitten @ send-text + send-key Return → correct terminal window
 - [ ] Auto-dismiss popup after timeout
 - [ ] Global keyboard shortcut to toggle popup
 - [ ] Notification history
-- [ ] Multiple concurrent Claude Code sessions
+- [ ] Multiple concurrent sessions
 - [ ] tmux adapter
 
 ## License
