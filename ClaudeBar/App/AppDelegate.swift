@@ -26,7 +26,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
         if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "bubble.left.fill", accessibilityDescription: "ClaudeBar")
+            let icon = NSImage(named: "MenuBarIcon")
+            icon?.size = NSSize(width: 22, height: 22)
+            button.image = icon
             button.action = #selector(togglePopover)
             button.target = self
         }
@@ -68,18 +70,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func updateStatusIcon(hasAttention: Bool) {
         guard let button = statusItem.button else { return }
 
+        let icon = NSImage(named: "MenuBarIcon")
+        icon?.size = NSSize(width: 22, height: 22)
+        button.image = icon
+
+        // Orange dot badge when attention needed
         if hasAttention {
-            button.image = NSImage(
-                systemSymbolName: "bubble.left.and.exclamationmark.bubble.right.fill",
-                accessibilityDescription: "ClaudeBar - Needs Attention"
-            )
-            button.contentTintColor = .systemOrange
+            if !button.subviews.contains(where: { $0.identifier?.rawValue == "badge" }) {
+                let dot = NSView(frame: NSRect(x: 14, y: 12, width: 6, height: 6))
+                dot.identifier = NSUserInterfaceItemIdentifier("badge")
+                dot.wantsLayer = true
+                dot.layer?.backgroundColor = NSColor.systemOrange.cgColor
+                dot.layer?.cornerRadius = 3
+                button.addSubview(dot)
+            }
         } else {
-            button.image = NSImage(
-                systemSymbolName: "bubble.left.fill",
-                accessibilityDescription: "ClaudeBar"
-            )
-            button.contentTintColor = nil
+            button.subviews.first(where: { $0.identifier?.rawValue == "badge" })?.removeFromSuperview()
         }
     }
 

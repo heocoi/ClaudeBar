@@ -18,6 +18,7 @@
 		AEFE80A59467AC492DCFAE22 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18CD56A9EFEFD225A510620 /* InputView.swift */; };
 		B901FB1FE860A5DBEE8AE02D /* KittyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15CBFEF8B62D77B0CDA5A95 /* KittyAdapter.swift */; };
 		C5F9C513F765E901089B5136 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F582AFED3A628B7334BAD8 /* EventParser.swift */; };
+		D2592E9B6565DCFBC71769F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D2EF2E434694289362E89F /* Assets.xcassets */; };
 		D93AD68D40F563064EE54165 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1F69B136159E899C2759A7 /* PopoverView.swift */; };
 		EDC2EEC0A2A427791D99F8FF /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE944C98E9BA86D4711F91 /* QuestionView.swift */; };
 		F0397F5DFD1AD4792B48A7AE /* notify-claudebar.sh in Resources */ = {isa = PBXBuildFile; fileRef = 792B7862CD0D8AB803730217 /* notify-claudebar.sh */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		260157F1CCCD030B59014E97 /* ClaudeBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeBarApp.swift; sourceTree = "<group>"; };
 		358348183A47AC5328638A0B /* TerminalAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalAdapter.swift; sourceTree = "<group>"; };
+		48D2EF2E434694289362E89F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5CE7ABECEC24240E7FA1E676 /* GenericTerminalAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTerminalAdapter.swift; sourceTree = "<group>"; };
 		5F1F69B136159E899C2759A7 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		67C83E0EB76C1910FD65A85F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		C7659DE78B4D9A0574CC0F6C /* ClaudeBar */ = {
 			isa = PBXGroup;
 			children = (
+				48D2EF2E434694289362E89F /* Assets.xcassets */,
 				E09C349706C4C9A9EC5EBEE1 /* ClaudeBar.entitlements */,
 				DC828E1C7AAF6FC78BBD5C10 /* Info.plist */,
 				171671EF3442E82C09B10B76 /* App */,
@@ -188,6 +191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2592E9B6565DCFBC71769F5 /* Assets.xcassets in Resources */,
 				F0397F5DFD1AD4792B48A7AE /* notify-claudebar.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
