@@ -1,0 +1,39 @@
+name: ClaudeBar
+options:
+  bundleIdPrefix: com.anhphong
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+
+targets:
+  ClaudeBar:
+    type: application
+    platform: macOS
+    sources:
+      - ClaudeBar
+    info:
+      path: ClaudeBar/Info.plist
+      properties:
+        LSUIElement: true
+        CFBundleDisplayName: ClaudeBar
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        NSHumanReadableCopyright: "Copyright 2026 anhphong"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.anhphong.ClaudeBar
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_ENTITLEMENTS: ""
+        SWIFT_VERSION: "5.9"
+      configs:
+        Debug:
+          CODE_SIGN_IDENTITY: "-"
+          ENABLE_APP_SANDBOX: NO
+        Release:
+          ENABLE_APP_SANDBOX: NO
+    entitlements:
+      path: ClaudeBar/ClaudeBar.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
